@@ -1,0 +1,18 @@
+service: forex-bot
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+
+app: my-app            # Modifica con il tuo app name su Serverless Dashboard
+org: bitpathforexnews  # Tuo org
+stage: dev
+
+functions:
+  bot:
+    handler: app.handler
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
